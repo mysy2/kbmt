@@ -1,0 +1,72 @@
+@charset "utf-8";
+
+/* CSS Document */
+@import url("reset.css");
+
+/* layout */
+.chat_wrap{min-width:800px;line-height:1.3;}
+
+/* chat_top */
+.chat_top{position:fixed;top:0;left:0;width:100%;background:#fff;z-index:10000;}
+.chat_top h1{padding:15px 30px;border-bottom:8px solid #2d3f60;}
+.chat_top h1 > a > img{width:185px;height:auto;}
+.btn_group{padding:20px;min-width:800px;}
+.btn_group .left{float:left;width:45%;border:3px solid #fff;border-radius:8px;}
+.btn_group .charge_person{box-shadow: 3px 3px 5px #c8d0d7;margin:0 3% 0 3%;}
+.btn_group .charge_person span{display:block;line-height:65px;font-size:18px;font-weight:bold;border-radius:5px;color:#fff;text-align:center;background: url(../images/icon_charge.png) 34% center no-repeat #2D3F61;}
+.btn_group .faq{box-shadow: 3px 3px 5px #cdd4da;}
+.btn_group .faq span{display:block;line-height:65px;background:url(../images/icon_faq.png) 34% center no-repeat #3b89a3;font-size:18px;font-weight:bold;border-radius:5px;color:#fff;text-align:center;}
+
+/* talk_wrap */
+.talk_wrap{background:#fafafa;padding:40px;margin-top:70px;}
+.bot_wrap .bot_img{float:left;}
+.bot_wrap .bot_img img{width:80px;height:80px;}
+.bot_wrap .box_txt{float:left;max-width:calc(100% - 214px);margin-left:15px;padding:30px;text-align:justify;border-radius:8px;background:#fff;box-shadow:4px 4px 5px #c7d0d6;}
+.bot_wrap .box_txt strong{color:#00b0ef;}
+.user_wrap{position:relative;margin:20px 0;}
+.user_wrap .user_txt{float:right;margin-right:60px;padding:30px;text-align:justify;border-radius:8px;background:#828282;box-shadow:4px 4px 5px #c8d0d7;color:#fff;max-width: calc(100% - 214px);}
+.user_wrap .user_time{position:absolute;bottom:0;right:10px;color:#999;}
+
+/* chat_bottom */
+.chat_bottom{background:#f7f7f7;padding:25px 10px;box-shadow:0 -9px 20PX #c8d0d7;}
+.font_box{border:1px solid #cbcbcb;box-sizing:border-box;margin:0 3% 0 3%;}
+.font_box li{float:left;width:20%;line-height:40px;text-align:center;}
+.font_box .font_tit{font-size:18px;color:#a3a3a3;font-weight:bold;}
+.font_box li > a{display:block;border-right:1px solid #cbcbcb;}
+.font_box li > a.on{background:#fff;font-weight:bold;color:#333;}
+.font_box li > a.border_none{border:none;}
+.chat_write_box{position:relative;margin:0 3% 0 3%;padding-top:0px;}
+.chat_write_box input[type="text"]{width:93%;height:60px;padding-left:20px;background:#fff;border:none;color:#adadad;}
+.chat_write_box .send_btn{display:block;position:absolute;bottom:0;right:0;width:132px;line-height:60px;text-align:center;background:#3b89a3;color:#fff;font-weight:bold;}
+
+/* media */
+@media screen and (max-width: 830px) {
+    .btn_group .left{width:44%;}
+    .btn_group .charge_person{margin: 0 2% 0 3%;}
+}
+
+/* popup common */
+.layer_wrap{box-sizing:border-box;width:560px;border-radius:8px;border:1px solid #a3a3a3;margin:50px;box-shadow: 6px 5px 10px #c7d0d6;}
+.layer_tit{height:40px;border-radius:7px 7px 0 0;background:#2d3f60;padding:13px 18px;}
+.layer_tit h1{color:#fff;line-height:40px;font-size:18px;font-weight: bold;}
+.layer_contents{overflow:hidden;overflow-y:scroll;}
+.layer_close > a{display:block;padding:13px 18px;background:#a5a5a5;color:#fff;text-align:center;border-radius: 0 0 5px 5px;font-weight:bold;}
+
+/* popup_contact */
+.layer_tit h1.contact{padding-left:40px;background:url(../images/icon_charge.png) 8px 6px no-repeat;background-size:22px;}
+.layer_contents{max-height:368px;}
+.layer_contents table{width:100%;background:#fff;text-align:center;}
+.layer_contents table th,td{padding:12px 0;border-bottom:1px solid #cdcdcd;}
+.layer_contents table th{text-align:center;color:#2d3f60;font-weight:bold;}
+.layer_contents table td{color:#666;}
+
+/* popup_faq */
+.layer_tit h1.faq{padding-left:50px;background:url(../images/icon_faq.png) 8px center no-repeat;background-size:32px;}
+.layer_contents{max-height:335px;}
+.layer_contents dl{padding:20px;border-bottom:1px solid #cdcdcd;}
+.layer_contents dl.border_none{border:none;}
+.layer_contents dt{color:#2d3f60;font-weight:bold;font-size:18px;padding-left:20px;background:url(../images/list_dot.png) 5px center  no-repeat;background-size:8px;}
+.layer_contents dd{color:#666;margin-top:5px;padding:0 20px;}
+
+
+
