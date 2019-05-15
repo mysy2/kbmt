@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.spring</groupId>
 	<artifactId>start</artifactId>
-	<name>springStart</name>
+	<name>kbmt</name>
 	<packaging>war</packaging>
 	<version>1.0.1-BUILD-SNAPSHOT</version>
 	<properties>

@@ -5,8 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Repository;
+
 import QueryAPI530.Search;
 
+@Repository
 public class Retrieve {
 	private static final String SERVER_IP = "127.0.0.1";
 	private static final int SERVER_PORT = 7000;
@@ -24,7 +27,7 @@ public class Retrieve {
 	private static final String START_DATE = "1970/01/01";
 	private static final String END_DATE = "2030/12/31";
 	
-	public List<Map<String, String>> srch(String query, String sfield) {
+	public List<Map<String, String>> srch1(String query, String sfield) {
 		List<Map<String, String>> result = new ArrayList<>();
 		Map<String, String> doc = null;
 		String prefix = "";

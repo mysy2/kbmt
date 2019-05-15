@@ -15,13 +15,13 @@ public class KbmtService {
 	private TestMapper mapper;
 	
 	@Autowired
-	private Retrieve s;
+	private Retrieve r;
 	
 	public String selectNow() {
 		return mapper.selectNow();
 	}
 	
 	public List<Map<String, String>> search() {
-		return s.srch("query", "sfield");
+		return r.srch1("query", "sfield");
 	}
 }
