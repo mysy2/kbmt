@@ -26,9 +26,9 @@
 		<!-- talk_wrap -->
 		<div class="talk_wrap">
 			<div class="bot_wrap clearfix">
-				<div class="bot_img"><img src="images/icon_bot.png" alt="KOMIPO 챗봇" /></div>
+				<div class="bot_img"><img src="images/icon_bot.png" alt="NIS 챗봇" /></div>
 				<div class="box_txt">
-					안녕하세요.<strong>KOMIPO 챗봇</strong>입니다.
+					안녕하세요.<strong>NIS 챗봇</strong>입니다.
 				</div>
 			</div>
 			<!-- <div class="user_wrap clearfix">
@@ -38,7 +38,7 @@
 				<div class="user_time">17:06</div>
 			</div>
 			<div class="bot_wrap clearfix">
-				<div class="bot_img"><img src="images/icon_bot.png" alt="KOMIPO 챗봇"/></div>
+				<div class="bot_img"><img src="images/icon_bot.png" alt="NIS 챗봇"/></div>
 				<div class="box_txt">
 					중부발전 챗봇입니다^^ 질문이 있으시면 언제든지 입력해주세요.
 					지금까지 학습한 내용으로 바로 답변드릴거에요.
@@ -51,7 +51,7 @@
 				<div class="user_time">17:10</div>
 			</div>
 			<div class="bot_wrap clearfix">
-				<div class="bot_img"><img src="images/icon_bot.png" alt="KOMIPO 챗봇"/></div>
+				<div class="bot_img"><img src="images/icon_bot.png" alt="NIS 챗봇"/></div>
 				<div class="box_txt">
 					다음 중 <strong>선택</strong>해주세요.
 				</div>
@@ -63,7 +63,7 @@
 				<div class="user_time">17:15</div>
 			</div>
 			<div class="bot_wrap clearfix">
-				<div class="bot_img"><img src="images/icon_bot.png" alt="KOMIPO 챗봇"/></div>
+				<div class="bot_img"><img src="images/icon_bot.png" alt="NIS 챗봇"/></div>
 				<div class="box_txt">
 					<strong>보령</strong>: 21% <strong>인천</strong>: 18% <strong>제주</strong>: 18%
 					<strong>세종</strong>: 18% <strong>신보령</strong>: 18%
