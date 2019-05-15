@@ -7,6 +7,8 @@
 <title>BMT 챗봇도우미</title>
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <script src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="js/chat.js"></script>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		
@@ -29,7 +31,7 @@
 					안녕하세요.<strong>KOMIPO 챗봇</strong>입니다.
 				</div>
 			</div>
-			<div class="user_wrap clearfix">
+			<!-- <div class="user_wrap clearfix">
 				<div class="user_txt">
 					안녕하세요.
 				</div>
@@ -66,17 +68,19 @@
 					<strong>보령</strong>: 21% <strong>인천</strong>: 18% <strong>제주</strong>: 18%
 					<strong>세종</strong>: 18% <strong>신보령</strong>: 18%
 				</div>
-			</div>
+			</div> -->
 		</div>
 		<!--// talk_wrap -->
 
 		<!-- chat_bottom -->
-		<div class="chat_bottom">
-			<div class="chat_write_box">
-				<input type="text" value="챗봇에게 문의해 보세요." />
-				<a href="#" class="send_btn">전송</a>
+		<form id="question" name="question" method="POST" action="javascript:question()">
+			<div class="chat_bottom">
+				<div class="chat_write_box">
+					<input type="text" value="" id="query" placeholder="챗봇에게 문의해 보세요." autocomplete="off"  onkeypress="if(event.keyCode==13) {ichat_question(''); return false;}" />
+					<a href="#" class="send_btn" onclick="ichat_question('');">전송</a>
+				</div>
 			</div>
-		</div>
+		</form>	
 		<!--// chat_bottom -->
 	</div>
 </body>
