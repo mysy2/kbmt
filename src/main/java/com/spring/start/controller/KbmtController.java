@@ -1,8 +1,6 @@
 package com.spring.start.controller;
 
-import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,4 +26,8 @@ public class KbmtController {
 		return "kbmt/main";
 	}
 	
+	@RequestMapping("/search.do")
+	public void search() {
+		System.out.println(service.search());
+	}
 }

@@ -31,7 +31,7 @@ public class Retrieve {
 		List<Map<String, String>> result = new ArrayList<>();
 		Map<String, String> doc = null;
 		String prefix = "";
-
+		
 		// collection
 		String collection = COLLECTION_INFO[0][0];
 		String SEARCH_FIELD = sfield;
