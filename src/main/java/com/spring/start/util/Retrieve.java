@@ -1,7 +1,6 @@
 package com.spring.start.util;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,19 +23,27 @@ public class Retrieve {
 	private static final int PAGE_START = 0;
 	private static final int RESULT_COUNT = 10;
 	private static final String SORT = "RANK/DESC";
-	private static final String START_DATE = "1970/01/01";
-	private static final String END_DATE = "2030/12/31";
 	
-	public List<Map<String, String>> srch1(String query, String dfield) {
-		List<Map<String, String>> result = new ArrayList<>();
-		Map<String, String> doc = null;
+	public List<String> srch(Map<String, String> mQuery) {
+		List<String> result = new ArrayList<>();
 		String prefix = "";
+		
+		String query = mQuery.get("query");
+		String dfield = mQuery.get("dfield");
+		String sdate = mQuery.get("sdate").replace("-", "/");
+		String edate = mQuery.get("edate").replace("-", "/");
+		
+		if (null == sdate || "".equals(sdate)) {
+			sdate = "1970/01/01";
+		}
+		if (null == edate || "".equals(edate)) {
+			edate = "2030/12/31";
+		}
 		
 		// collection
 		String collection = COLLECTION_INFO[0][0];
 		String SEARCH_FIELD = COLLECTION_INFO[0][1];
 		String DOCUMENT_FIELD = dfield;
-		String[] dfields = DOCUMENT_FIELD.split(",");
 
 		// object
 		Search search = new Search();
@@ -52,7 +59,7 @@ public class Retrieve {
 		search.w3SetQueryAnalyzer(collection, 1, 1, 1, 1);
 		search.w3SetPageInfo(collection, PAGE_START, RESULT_COUNT);
 		search.w3SetSortField(collection, SORT);
-		search.w3SetDateRange(collection, START_DATE, END_DATE);
+		search.w3SetDateRange(collection, sdate, edate);
 		search.w3SetSearchField(collection, SEARCH_FIELD);
 		search.w3SetSearchFieldScore(collection, SEARCH_FIELD);
 		search.w3SetDocumentField(collection, DOCUMENT_FIELD);
@@ -63,18 +70,12 @@ public class Retrieve {
 
 		int count = search.w3GetResultCount(collection);
 		int totalCount = search.w3GetResultTotalCount(collection);
+		
+		System.out.println(totalCount);
 
 		if (totalCount > 0) {
 			for (int i = 0; i < count; i++) {
-				doc = new HashMap<>();
-				
-				doc.put("count", totalCount + "");
-
-				for (String d : dfields) {
-					doc.put(d, search.w3GetField(collection, d, i));
-				}
-
-				result.add(doc);
+				result.add(search.w3GetField(collection, dfield, i));
 			}
 		}
 

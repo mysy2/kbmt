@@ -33,11 +33,17 @@ public class KbmtService {
 		return mapper.selectNow();
 	}
 	
-	public List<Map<String, String>> search(String json) throws Exception {
-		Map<String, String> map = cu.parsingJson(json);
+	public List<String> search(String json) throws Exception {
+		Map<String, String> mParse = cu.parsingJson(json);
+		System.out.println("[파싱] " + mParse.toString());
 		
-//		r.srch1("query", "sfield")
-		return null;
+		Map<String, String> mQuery = cu.convertKeyword(mParse);
+		System.out.println("[쿼리] " + mQuery);
+		
+		List<String> lResult = r.srch(mQuery);
+		System.out.println("[검색결과] " + lResult);
+		
+		return lResult;
 	}
 	
 	// HTTP POST request
