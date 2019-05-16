@@ -17,8 +17,8 @@ public class Retrieve {
 	private static final String[][] COLLECTION_INFO = new String[][] {
 		{
 			"kbmt",
-			"TITLE,CONTENT,COMMENT",
-			"DOCID,TITLE,CONTENT,USER,DATE,AREA,COMMENT,URL"
+			"NERCONTENT",
+			"TITLE,CONTENT,USER,DATE,AREA,COMMENT,URL"
 		}
 	};
 	private static final int PAGE_START = 0;
@@ -27,15 +27,15 @@ public class Retrieve {
 	private static final String START_DATE = "1970/01/01";
 	private static final String END_DATE = "2030/12/31";
 	
-	public List<Map<String, String>> srch1(String query, String sfield) {
+	public List<Map<String, String>> srch1(String query, String dfield) {
 		List<Map<String, String>> result = new ArrayList<>();
 		Map<String, String> doc = null;
 		String prefix = "";
 		
 		// collection
 		String collection = COLLECTION_INFO[0][0];
-		String SEARCH_FIELD = sfield;
-		String DOCUMENT_FIELD = COLLECTION_INFO[0][2];
+		String SEARCH_FIELD = COLLECTION_INFO[0][1];
+		String DOCUMENT_FIELD = dfield;
 		String[] dfields = DOCUMENT_FIELD.split(",");
 
 		// object
@@ -70,8 +70,8 @@ public class Retrieve {
 				
 				doc.put("count", totalCount + "");
 
-				for (String dfield : dfields) {
-					doc.put(dfield, search.w3GetField(collection, dfield, i));
+				for (String d : dfields) {
+					doc.put(d, search.w3GetField(collection, d, i));
 				}
 
 				result.add(doc);

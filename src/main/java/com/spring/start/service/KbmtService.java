@@ -11,11 +11,10 @@ import java.net.URL;
 import java.util.List;
 import java.util.Map;
 
-import javax.net.ssl.HttpsURLConnection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.start.util.ChatUtil;
 import com.spring.start.util.Retrieve;
 
 @Service
@@ -27,17 +26,22 @@ public class KbmtService {
 	@Autowired
 	private Retrieve r;
 	
+	@Autowired
+	private ChatUtil cu;
+	
 	public String selectNow() {
 		return mapper.selectNow();
 	}
 	
-	public List<Map<String, String>> search() {
-		return r.srch1("query", "sfield");
+	public List<Map<String, String>> search(String json) throws Exception {
+		Map<String, String> map = cu.parsingJson(json);
+		
+//		r.srch1("query", "sfield")
+		return null;
 	}
-
 	
 	// HTTP POST request
-	public static String sendPost(String ok, String api, String postBody) {
+	public String sendPost(String ok, String api, String postBody) {
 		// create json body
 		URL obj;
 		StringBuilder sb = new StringBuilder();

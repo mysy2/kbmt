@@ -27,6 +27,8 @@ function ichat_question(gubun) {
     //답변
     var answerStr = "";
 	answerStr += answer_top_html;
+	
+	
 	answerStr += "질문에 부합되는 답변이 없습니다. 정확히 다시 문의 부탁드립니다.";
 	answerStr += answer_bottom_html;	
     $(".talk_wrap").append(answerStr);
