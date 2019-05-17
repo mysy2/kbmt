@@ -1,5 +1,7 @@
 package com.spring.start.util;
 
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -52,8 +54,7 @@ public class ChatUtil {
 		String dfield = "";
 		String sdate = "";
 		String edate = "";
-		Pattern p = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
-		
+	
 		Set<String> set = map.keySet();
 		Iterator<String> iter = set.iterator();
 		
@@ -85,13 +86,18 @@ public class ChatUtil {
 			} else if (key.contains("장소")) {
 				keyword += map.get(key) + ":LS ";
 			} else if (key.contains("date")) {
-				String date = map.get(key);
-				Matcher m = p.matcher(date);
-				
-				if (m.find()) {
-					sdate = date;
-					edate = date;
+				 try {
+					 ArrayList datelist =  DateUtils.parse(map.get(key));
+					 if(datelist.size()>0) {
+							sdate = (String) datelist.get(0);
+							edate = (String) datelist.get(datelist.size()-1);		 
+					 }		
+				} catch (ParseException e) {
+					e.printStackTrace();
 				}
+			} else if (key.contains("활동")) {
+				keyword += map.get(key)+" ";
+				
 			}
 		}
 		

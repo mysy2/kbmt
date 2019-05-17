@@ -8,6 +8,7 @@ import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,17 +34,23 @@ public class KbmtService {
 		return mapper.selectNow();
 	}
 	
-	public List<String> search(String json) throws Exception {
+	public Map<String, Object> search(String json) throws Exception {
+		Map<String, Object> result = new HashMap<>();
+		
 		Map<String, String> mParse = cu.parsingJson(json);
 		System.out.println("[파싱] " + mParse.toString());
+		
+		String category = mParse.get("category");
+		result.put("category", category);
 		
 		Map<String, String> mQuery = cu.convertKeyword(mParse);
 		System.out.println("[쿼리] " + mQuery);
 		
 		List<String> lResult = r.srch(mQuery);
 		System.out.println("[검색결과] " + lResult);
+		result.put("result", lResult);
 		
-		return lResult;
+		return result;
 	}
 	
 	// HTTP POST request

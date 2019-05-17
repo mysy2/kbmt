@@ -1,5 +1,7 @@
 package com.spring.start.util;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -16,13 +18,13 @@ public class Retrieve {
 	private static final String[][] COLLECTION_INFO = new String[][] {
 		{
 			"kbmt",
-			"NERCONTENT",
+			"TITLE,CONTENT,NERCONTENT",
 			"TITLE,CONTENT,USER,DATE,AREA,COMMENT,URL"
 		}
 	};
 	private static final int PAGE_START = 0;
 	private static final int RESULT_COUNT = 10;
-	private static final String SORT = "RANK/DESC";
+	private static final String SORT = "DATE/DESC";
 	
 	public List<String> srch(Map<String, String> mQuery) {
 		List<String> result = new ArrayList<>();
@@ -56,7 +58,7 @@ public class Retrieve {
 
 		// setting collection
 		search.w3AddCollection(collection);
-		search.w3SetQueryAnalyzer(collection, 1, 1, 1, 1);
+		search.w3SetQueryAnalyzer(collection, 0, 1, 1, 1);
 		search.w3SetPageInfo(collection, PAGE_START, RESULT_COUNT);
 		search.w3SetSortField(collection, SORT);
 		search.w3SetDateRange(collection, sdate, edate);
@@ -75,7 +77,20 @@ public class Retrieve {
 
 		if (totalCount > 0) {
 			for (int i = 0; i < count; i++) {
-				result.add(search.w3GetField(collection, dfield, i));
+				if(!search.w3GetField(collection, dfield, i).equals("")) {
+					if(dfield.equals("DATE")) {
+						SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일");
+						
+						SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+						try {
+							result.add(sdf.format(transFormat.parse(search.w3GetField(collection, dfield, i))));
+						} catch (ParseException e) {
+							e.printStackTrace();
+						}
+					}else {
+						result.add(search.w3GetField(collection, dfield, i));		
+					}
+				}
 			}
 		}
 

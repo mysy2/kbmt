@@ -13,29 +13,40 @@ var answer_bottom_html = "</div></div>";
 function ichat_question(gubun) {	
 	var query = $('#query').val();
 	
-	
 	//질문
 	var tempStr = "";
-    tempStr += question_top_html;
-    tempStr += query;
-    tempStr += question_bottom_html;
+	tempStr += question_top_html;
+	tempStr += query;
+	tempStr += question_bottom_html;
+	
+	$(".talk_wrap").append(tempStr);
+	$(".talk_wrap").scrollTop($('.talk_wrap')[0].scrollHeight);
+	$('#talk_wrap').scrollTop(500);
+	
+	 
+	 $.ajax({
+			type: 'post',
+	        url: "/search.do",
+	        dataType: "text",
+	        data: { query :  query},
+	        error : function(data){
+	            alert("통신실패:"+JSON.stringify(data));
+	        },
+	        success: function(data) {
+	        	//답변
+	        	var answerStr = "";
+	        	answerStr += answer_top_html;
+	        	answerStr += data;
+	        	answerStr += answer_bottom_html;	
+	        	$(".talk_wrap").append(answerStr);
+	        	$(".talk_wrap").scrollTop($('.talk_wrap')[0].scrollHeight);
+	        	$('#talk_wrap').scrollTop(500);
+	        }
+		});
+	
 
-    $(".talk_wrap").append(tempStr);
-    $(".talk_wrap").scrollTop($('.talk_wrap')[0].scrollHeight);
-    $('#talk_wrap').scrollTop(500);
-    
-    //답변
-    var answerStr = "";
-	answerStr += answer_top_html;
 	
-	
-	answerStr += "질문에 부합되는 답변이 없습니다. 정확히 다시 문의 부탁드립니다.";
-	answerStr += answer_bottom_html;	
-    $(".talk_wrap").append(answerStr);
-    $(".talk_wrap").scrollTop($('.talk_wrap')[0].scrollHeight);
-    $('#talk_wrap').scrollTop(500);
-    
-    $('#query').val("");
+	$('#query').val("");
 }
 
 
