@@ -4,10 +4,9 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -21,14 +20,16 @@ public class ChatUtil {
 	 */
 	public Map<String, String> parsingJson(String json) throws Exception {
 		Map<String, String> result = new HashMap<>();
+		List<String> lCate = new ArrayList<>();
+		String category = "";
 		
 		JSONParser jsonParser = new JSONParser();
 		JSONObject jsonObject = (JSONObject) jsonParser.parse(json);
 		JSONObject response = (JSONObject) jsonObject.get("response");
 		JSONArray parameter = (JSONArray) response.get("parameterValueList");
 		
-		String category = response.get("topIntentName").toString();
-		result.put("category", category);
+//		String category = response.get("topIntentName").toString();
+//		result.put("category", category);
 		
 		for (int i = 0; i < parameter.size(); i++) {
 			JSONObject params = (JSONObject) parameter.get(i);
@@ -40,7 +41,22 @@ public class ChatUtil {
 			}
 
 			result.put(name, value);
+			lCate.add(name);
 		}
+		
+		if (lCate.contains("내용")) {
+			category = "특정인물 내용";
+		} else if (lCate.contains("발언")) {
+			category = "특정인물 발언 내용";
+		} else if (lCate.contains("활동")) {
+			category = "특정인물 시간대 활동";
+		} else if (lCate.contains("함께 언급")) {
+			category = "함께 언급된 인물";
+		} else if (lCate.contains("장소")) {
+			category = "지역 관련 인물";
+		}
+		
+		result.put("category", category);
 		
 		return result;
 	}
@@ -86,17 +102,27 @@ public class ChatUtil {
 			} else if (key.contains("장소")) {
 				keyword += map.get(key) + ":LC ";
 			} else if (key.contains("date")) {
-				 try {
-					 ArrayList datelist =  DateUtils.parse(map.get(key));
+				try {
+					 ArrayList<String> datelist =  DateUtils.parse(map.get(key));
 					 if(datelist.size()>0) {
-							sdate = (String) datelist.get(0);
-							edate = (String) datelist.get(datelist.size()-1);		 
+						sdate = (String) datelist.get(0);
+						edate = (String) datelist.get(datelist.size()-1);
 					 }		
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
-			} else if (!set.contains("date") && key.contains("시간")) {
-				
+			} else if (key.contains("시간")) {
+				if (!"".equals(sdate)) {
+					try {
+						 ArrayList<String> datelist =  DateUtils.parse(map.get(key));
+						 if(datelist.size()>0) {
+							sdate = (String) datelist.get(0);
+							edate = (String) datelist.get(datelist.size()-1);		 
+						 }		
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+				}
 			} else if (key.contains("활동")) {
 				keyword += map.get(key)+" ";
 				

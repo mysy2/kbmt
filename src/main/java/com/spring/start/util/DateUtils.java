@@ -5,22 +5,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
-import java.util.regex.Pattern;
 
 
 
 public class DateUtils {
 
 	public static ArrayList<String> parse(String str) throws ParseException {
-			
-		//c1.get(Calendar.YEAR) : 2018년으로 고정
-		String startdate ="2019-05-16";
-		String enddate ="2019-05-16";
-		
-
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); // 날짜 포맷 
 		
 		ArrayList<String> datelist = new ArrayList<>();
@@ -55,7 +47,6 @@ public class DateUtils {
 				SimpleDateFormat transFormat = new SimpleDateFormat("yyyy년MM월dd일");
 				datelist.add(sdf.format(transFormat.parse(dateCheck("2018"+"년"+tmp,"yyyy년MM월dd일"))));
 			}else if(!dateCheck(tmp,"yyyy년MM월").equals("")) {
-				Calendar c2 = new GregorianCalendar();
 				SimpleDateFormat transFormat = new SimpleDateFormat("yyyy년MM월dd일");
 				datelist.add(sdf.format(transFormat.parse(dateCheck(tmp+"1일","yyyy년MM월dd일"))));
 				int month = transFormat.parse(dateCheck(tmp+"1일","yyyy년MM월dd일")).getMonth()+1;
@@ -68,7 +59,6 @@ public class DateUtils {
 					datelist.add(sdf.format(transFormat.parse(dateCheck(tmp+"28일","yyyy년MM월dd일"))));	
 				}
 			}else if(!dateCheck(tmp,"MM월").equals("")) {
-				Calendar c2 = new GregorianCalendar();
 				SimpleDateFormat transFormat = new SimpleDateFormat("yyyy년MM월dd일");
 				datelist.add(sdf.format(transFormat.parse(dateCheck("2018"+"년"+tmp+"1일","yyyy년MM월dd일"))));
 				int month = transFormat.parse(dateCheck("2018"+"년"+tmp+"1일","yyyy년MM월dd일")).getMonth()+1;
@@ -80,6 +70,18 @@ public class DateUtils {
 				}else if(month==2) {
 					datelist.add(sdf.format(transFormat.parse(dateCheck("2018"+"년"+tmp+"28일","yyyy년MM월dd일"))));	
 				}
+			} else if ("태양절".equals(tmp)) {
+				SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd");
+				datelist.add(sdf.format(transFormat.parse("20180415")));
+			} else if ("김정일 생일".equals(tmp) || "김정일생일".equals(tmp)) {
+				SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd");
+				datelist.add(sdf.format(transFormat.parse("20180216")));
+			} else if ("정전 협정 체결일".equals(tmp)) {
+				SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd");
+				datelist.add(sdf.format(transFormat.parse("20180727")));
+			} else if ("국제 아동절".equals(tmp) || "국제아동절".equals(tmp)) {
+				SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd");
+				datelist.add(sdf.format(transFormat.parse("20180601")));
 			}
 			
 		}
