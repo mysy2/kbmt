@@ -78,13 +78,13 @@ public class ChatUtil {
 					dfield = "DATE";
 					break;
 				case "함께 언급된 인물":
-					dfield = "USER";
+					dfield = "TITLE,USER";
 					break;
 				}
 			} else if (key.contains("사람")) {
 				keyword += map.get(key) + ":PS ";
 			} else if (key.contains("장소")) {
-				keyword += map.get(key) + ":LS ";
+				keyword += map.get(key) + ":LC ";
 			} else if (key.contains("date")) {
 				 try {
 					 ArrayList datelist =  DateUtils.parse(map.get(key));
@@ -95,6 +95,8 @@ public class ChatUtil {
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
+			} else if (!set.contains("date") && key.contains("시간")) {
+				
 			} else if (key.contains("활동")) {
 				keyword += map.get(key)+" ";
 				

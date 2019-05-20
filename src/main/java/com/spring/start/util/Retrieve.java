@@ -77,19 +77,27 @@ public class Retrieve {
 
 		if (totalCount > 0) {
 			for (int i = 0; i < count; i++) {
-				if(!search.w3GetField(collection, dfield, i).equals("")) {
-					if(dfield.equals("DATE")) {
-						SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일");
-						
-						SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-						try {
-							result.add(sdf.format(transFormat.parse(search.w3GetField(collection, dfield, i))));
-						} catch (ParseException e) {
-							e.printStackTrace();
-						}
-					}else {
-						result.add(search.w3GetField(collection, dfield, i));		
+				if(dfield.equals("DATE")) {
+					if ("".equals(search.w3GetField(collection, dfield, i))) {
+						continue;
 					}
+					
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일");
+					SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+					
+					try {
+						result.add(sdf.format(transFormat.parse(search.w3GetField(collection, dfield, i))));
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+				} else if (dfield.equals("TITLE,USER")) {
+					result.add("기사 : " + search.w3GetField(collection, "TITLE", i) + " / 인물 : " + search.w3GetField(collection, "USER", i));
+				} else {
+					if ("".equals(search.w3GetField(collection, dfield, i))) {
+						continue;
+					}
+					
+					result.add(search.w3GetField(collection, dfield, i));
 				}
 			}
 		}
