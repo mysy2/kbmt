@@ -64,7 +64,7 @@ public class KbmtController {
 					sb.append("지역 관련된 목록입니다.<br>");
 					for (int i = 0; i < lSearch.size(); i++) {
 						sb.append(i + 1).append(". ").append(lSearch.get(i)).append("<br>");
-					}		
+					}
 				}
 				break;
 			case "특정인물 내용":
@@ -94,29 +94,18 @@ public class KbmtController {
 			case "함께 언급된 인물":
 				if(lSearch.size() >0) {
 					for (int i = 0; i < lSearch.size(); i++) {
-						for(String usr : lSearch.get(i).split(",")) {
-							if(!sb.toString().contains(usr.trim())) {
-								if(sb.length()>0) {
-									sb.append(", ").append(usr.trim());			
-								}else {
-									
-									sb.append(usr.trim());			
-								}
-							}
-						}
+						sb.append(i + 1).append(". ").append(lSearch.get(i)).append("<br>");
 					}
-					sb.append(" 입니다.");
 				}
-				
-				break;
+			break;
 		}
 
 		
 		if(sb.length()==0) {
 			if(query.equals("")) {
-				sb.append("질문 내용이 없습니다." );		
+				sb.append("질문 내용이 없습니다." );
 			}else {
-				sb.append("질문에 부합되는 답변이 없습니다.<br> 정확히 다시 문의 부탁드립니다." );		
+				sb.append("질문에 부합되는 답변이 없습니다.<br> 정확히 다시 문의 부탁드립니다." );
 			}
 		}
 		

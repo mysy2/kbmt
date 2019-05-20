@@ -10,7 +10,7 @@ var answer_top_html = "<div class=\"bot_wrap clearfix\"><div class=\"bot_img\"><
 var answer_bottom_html = "</div></div>";
 
 
-function ichat_question(gubun) {	
+function ichat_question(gubun) {
 	var query = $('#query').val();
 	
 	//질문
